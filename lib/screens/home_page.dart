@@ -111,9 +111,9 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20),
               Text(
                 "Most Popular",
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18,
                 ),
               ),
               const SizedBox(height: 10),
