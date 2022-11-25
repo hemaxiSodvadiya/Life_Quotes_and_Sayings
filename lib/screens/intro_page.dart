@@ -45,9 +45,9 @@ class _IntroPageState extends State<IntroPage> {
                   padding: const EdgeInsets.all(40),
                   child: Column(
                     children: [
-                      Image.network(
-                        name[i].image,
-                        height: 200,
+                      CircleAvatar(
+                        radius: 120,
+                        backgroundImage: NetworkImage(name[i].image),
                       ),
                       Text(
                         name[i].title,
@@ -83,7 +83,7 @@ class _IntroPageState extends State<IntroPage> {
           SizedBox(height: 20),
           InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed('home_page');
+              Navigator.of(context).pushNamed('home_Page');
             },
             child: Container(
               alignment: Alignment.center,
