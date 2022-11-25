@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -18,7 +20,10 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
   Color textColor = Colors.white;
   bool showData = false;
 
-  int fontIndex = 0;
+  List<bool> isSelected =
+      List.generate(Global.quoteCategory.length, (index) => false);
+
+  bool isChanged = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +40,11 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
         actions: [
           IconButton(
               onPressed: () {
+                Fluttertoast.showToast(
+                    msg: "Quote Download Successfully",
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                    fontSize: 14);
                 Navigator.of(context).pop();
               },
               icon: Icon(Icons.download)),
@@ -54,16 +64,26 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
             alignment: Alignment.center,
             height: MediaQuery.of(context).size.height * 0.68,
             width: MediaQuery.of(context).size.width * 0.9,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                image: MemoryImage(args!.image),
-                fit: BoxFit.cover,
-              ),
-            ),
+            decoration: (isChanged == false)
+                ? BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: MemoryImage(args!.image),
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
             child: Text(
-              args.quotes,
+              args!.quotes,
               style: TextStyle(
                 color: textColor,
                 fontSize: 20,
@@ -118,11 +138,15 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
               ),
               onPressed: () async {
                 setState(() {
-                  args.image = ((Global.editorImageList.indexOf(0) ==
-                          Global.editorImageList.length - 1)
-                      ? Global.editorImageList[0]
-                      : Global.editorImageList[
-                          Global.editorImageList.indexOf(1) + 1]);
+                  args.changeImageList =
+                      ((Global.changeImage.indexOf(args.changeImageList) ==
+                              Global.changeImage.length - 1)
+                          ? Global.changeImage[0]
+                          : Global.changeImage[
+                              Global.changeImage.indexOf(args.changeImageList) +
+                                  1]);
+
+                  
                 });
               },
             ),
@@ -146,10 +170,10 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
                 ClipboardData data = ClipboardData(text: args.quotes);
                 await Clipboard.setData(data);
                 Fluttertoast.showToast(
-                    msg: "Quote's Copied",
-                    backgroundColor: const Color(0xff303030),
+                    msg: "Quote Copied Successfully",
+                    backgroundColor: Colors.green,
                     textColor: Colors.white,
-                    fontSize: 16.0);
+                    fontSize: 14);
               },
             ),
             IconButton(
