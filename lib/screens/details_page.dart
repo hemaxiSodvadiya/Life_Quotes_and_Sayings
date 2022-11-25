@@ -15,7 +15,6 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -29,7 +28,6 @@ class _DetailPageState extends State<DetailPage> {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
         ),
         backgroundColor: Colors.white,
-
         title: Text(
           Global.tableName,
           style: TextStyle(
@@ -54,7 +52,6 @@ class _DetailPageState extends State<DetailPage> {
                       borderRadius: BorderRadius.circular(8),
                       onTap: () {
                         Global.selectedQuote = res[i];
-                        Navigator.of(context).pushNamed("details1_page");
                       },
                       child: Ink(
                         decoration: BoxDecoration(
@@ -116,7 +113,11 @@ class _DetailPageState extends State<DetailPage> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.of(context).pushNamed(
+                                            "change",
+                                            arguments: res[i]);
+                                      },
                                       icon: const Icon(
                                         Icons.image,
                                         color: Colors.purple,
@@ -126,7 +127,8 @@ class _DetailPageState extends State<DetailPage> {
                                       onPressed: () async {
                                         QuotesData(
                                           context: context,
-                                          res: res[i], isShare: false,
+                                          res: res[i],
+                                          isShare: false,
                                         );
                                       },
                                       icon: const Icon(
@@ -161,12 +163,23 @@ class _DetailPageState extends State<DetailPage> {
                                       ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.star_border,
-                                        color: Colors.teal,
-                                      ),
+                                      onPressed: () {
+                                        res[i].favorite = !res[i].favorite;
+                                        setState(() {});
+                                      },
+                                      icon: Icon(
+                                          res[i].favorite
+                                              ? Icons.star
+                                              : Icons.star_border_outlined,
+                                          color: const Color(0xff303030)),
                                     ),
+                                    // IconButton(
+                                    //   onPressed: () {},
+                                    //   icon: const Icon(
+                                    //     Icons.star_border,
+                                    //     color: Colors.teal,
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -189,12 +202,10 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-
-
   QuotesData(
       {required BuildContext context,
-        required QuotesDataBase res,
-        required bool isShare}) {
+      required QuotesDataBase res,
+      required bool isShare}) {
     Global.screenshotController
         .captureFromWidget(
       Stack(
@@ -203,12 +214,12 @@ class _DetailPageState extends State<DetailPage> {
           Container(
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(10),
-                topLeft: Radius.circular(10),
+                topRight: Radius.circular(8),
+                topLeft: Radius.circular(8),
               ),
               image: DecorationImage(
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.6),
+                  Colors.black.withOpacity(0.5),
                   BlendMode.hardLight,
                 ),
                 fit: BoxFit.cover,
@@ -236,24 +247,22 @@ class _DetailPageState extends State<DetailPage> {
       ),
     )
         .then(
-          (Uint8List? image) async {
+      (Uint8List? image) async {
         if (image != null) {
           final directory = await getApplicationDocumentsDirectory();
           final imagePath = await File('${directory.path}/image.png').create();
           await imagePath.writeAsBytes(image);
           isShare
-              ? await Share.shareXFiles([imagePath.path as XFile])
+              ? await Share.shareFiles([imagePath.path])
               : ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              behavior: SnackBarBehavior.floating,
-              backgroundColor: Colors.green,
-              content: Text("image Save Successfully"),
-            ),
-          );
+                  const SnackBar(
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.green,
+                    content: Text("image Save Successfully"),
+                  ),
+                );
         }
       },
     );
   }
-
-
 }
