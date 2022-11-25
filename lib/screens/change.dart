@@ -20,15 +20,30 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
   Color textColor = Colors.white;
   bool showData = false;
 
+  List<String> fontList = [
+    'Sono',
+    'Rubic',
+    'Oswald',
+    'NotoSans',
+    'Teko',
+    'Lobster'
+  ];
+  String isSelect = 'Rubic';
+
   List<bool> isSelected =
       List.generate(Global.quoteCategory.length, (index) => false);
-
+  bool onselected = false;
+  Random random = Random();
+  Uint8List? vlist;
+  List<Uint8List> all = [];
+  //List<String> all = [];
+  String name = "poppins";
   bool isChanged = false;
 
   @override
   Widget build(BuildContext context) {
-    QuotesDataBase? args =
-        ModalRoute.of(context)!.settings.arguments as QuotesDataBase?;
+    QuotesDataBase args =
+        ModalRoute.of(context)!.settings.arguments as QuotesDataBase;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -77,8 +92,7 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                      image: NetworkImage(
-                          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
+                      image: NetworkImage(args.changeImageList!),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -138,15 +152,22 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
               ),
               onPressed: () async {
                 setState(() {
-                  args.changeImageList =
-                      ((Global.changeImage.indexOf(args.changeImageList) ==
-                              Global.changeImage.length - 1)
-                          ? Global.changeImage[0]
-                          : Global.changeImage[
-                              Global.changeImage.indexOf(args.changeImageList) +
-                                  1]);
+                  // args.changeImageList =
+                  //     ((Global.changeImageList.indexOf(args.changeImageList) ==
+                  //             Global.changeImage.length - 1)
+                  //         ? Global.changeImage[0]
+                  //         : Global.changeImage[
+                  //             Global.changeImage.indexOf(args.changeImageList) +
+                  //                 1]);
 
-                  
+                  isChanged = true;
+                  args.changeImageList =
+                      (Global.editorImageList.indexOf(args.changeImageList!) ==
+                              Global.editorImageList.length - 1)
+                          ? Global.editorImageList[0]
+                          : Global.editorImageList[Global.editorImageList
+                                  .indexOf(args.changeImageList!) +
+                              1];
                 });
               },
             ),
@@ -182,7 +203,9 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
                   color: const Color(0xff303030)),
               onPressed: () {
                 args.favorite = !args.favorite;
-                setState(() {});
+                setState(() {
+                  Global.selectedList.add(args);
+                });
               },
             ),
           ],
