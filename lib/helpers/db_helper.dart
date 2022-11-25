@@ -41,7 +41,7 @@ class DBHelper {
 
       for (int i = 0; i < res!.length; i++) {
         String query =
-            "INSERT INTO $tableName($colQuotes, $colAuthor, $colImage,$colFavorite) VALUES(?, ?, ?)";
+            "INSERT INTO $tableName($colQuotes, $colAuthor, $colImage,$colFavorite) VALUES(?, ?, ?,?)";
         List args = [res[i].quot, res[i].author, res[i].image, res[i].favorite];
 
         await db?.rawInsert(query, args);
