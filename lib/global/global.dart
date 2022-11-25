@@ -10,7 +10,11 @@ class Global {
         title: "By Topic",
         color: Colors.orangeAccent),
     DrawerDetails(icon: Icons.person, title: "By Author", color: Colors.black),
-    DrawerDetails(icon: Icons.star, title: "Favourite", color: Colors.amber),
+    DrawerDetails(
+        icon: Icons.star,
+        title: "Favourite",
+        color: Colors.amber,
+        routes: 'favourite'),
     DrawerDetails(
         icon: Icons.lightbulb, title: "Quote of the Day", color: Colors.orange),
     DrawerDetails(
@@ -65,9 +69,7 @@ class Global {
     Category(category: "robert_griffin_iii", title: "Robert Griffin Iii"),
     Category(category: "TedWilliams", title: "TedWilliams"),
   ];
-
-
-  static List editorImageList = [
+  static List<String> editorImageList = <String>[
     "https://c4.wallpaperflare.com/wallpaper/662/990/531/fantasy-book-hd-wallpaper-preview.jpg",
     "https://love-shayari.co/wp-content/uploads/2021/10/sun-rise.jpg",
     "https://images.indianexpress.com/2021/01/NASA-Black-hole.jpg?w=389",
@@ -91,4 +93,5 @@ class Global {
     Colors.blueGrey,
     Colors.white,
   ];
+  static List<QuotesDataBase> selectedList = [];
 }
