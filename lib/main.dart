@@ -1,6 +1,7 @@
 import 'package:demo_project/screens/change.dart';
 import 'package:demo_project/screens/details_page.dart';
 import 'package:demo_project/screens/details_page1.dart';
+import 'package:demo_project/screens/favourite_page.dart';
 import 'package:demo_project/screens/home_page.dart';
 import 'package:demo_project/screens/intro_page.dart';
 import 'package:demo_project/screens/drawer_List_Page.dart';
@@ -24,6 +25,7 @@ void main() async {
         'detail_Page': (context) => const DetailPage(),
         'detail_Page1': (context) => const DetailsPage(),
         'change': (context) => const Quotes_Detail_Page(),
+        'favourite': (context) => const FavouritePage(),
       },
     ),
   );
