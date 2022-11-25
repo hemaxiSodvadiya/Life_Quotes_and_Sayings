@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../global/global.dart';
 import '../model/model.dart';
@@ -13,11 +12,8 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-
-
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -129,9 +125,10 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 
-
   QuotesDatas(
-      {required BuildContext context, required QuotesDataBase res,  bool? isShare}) async {
+      {required BuildContext context,
+      required QuotesDataBase res,
+      bool? isShare}) async {
     await Clipboard.setData(
       ClipboardData(
         text: """Quote : "${res.quotes}"\n Author : ${res.author}""",
@@ -145,5 +142,4 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
     );
   }
-
 }
