@@ -36,19 +36,23 @@ class QuotesDataBase {
   final String author;
   late Uint8List image;
   bool favorite;
+  String? changeImageList;
 
   QuotesDataBase(
       {required this.quotes,
       required this.author,
       required this.image,
-      required this.favorite});
+      required this.favorite,
+      this.changeImageList});
 
   factory QuotesDataBase.fromJSON(Map data) {
     return QuotesDataBase(
         quotes: data["quote"],
         author: data["author"],
         image: data["image"],
-        favorite: false);
+        favorite: false,
+        changeImageList:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg");
   }
 }
 
