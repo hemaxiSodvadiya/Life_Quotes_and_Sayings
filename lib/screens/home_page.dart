@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../global/global.dart';
 import '../helpers/db_helper.dart';
@@ -18,12 +17,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         leading: Builder(builder: (context) {
           return IconButton(
             onPressed: () {
@@ -33,11 +31,11 @@ class _HomePageState extends State<HomePage> {
           );
         }),
         backgroundColor: Colors.white,
-
-        title: const Text(
-          "Life Quotes and Sayings",
-          style: TextStyle(fontSize: 24,color:Colors.black,fontWeight: FontWeight.w900)
-        ),
+        title: const Text("Life Quotes and Sayings",
+            style: TextStyle(
+                fontSize: 24,
+                color: Colors.black,
+                fontWeight: FontWeight.w900)),
         actions: [
           IconButton(
             onPressed: () {},
@@ -63,8 +61,7 @@ class _HomePageState extends State<HomePage> {
                     child: InkWell(
                       onTap: () {
                         Global.isAuthorCategory = false;
-                        Navigator.of(context)
-                            .pushNamed("drawer_List_Page");
+                        Navigator.of(context).pushNamed("drawer_List_Page");
                       },
                       child: options(
                         color: const Color(0xffA45584),
@@ -122,11 +119,10 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        Global.tableName = "Inspirational";
+                        Global.tableName = "wisdom";
                         Navigator.of(context).pushNamed("detail_Page");
                       },
-                      child: category(
-                          height: height, category: "Inspirational"),
+                      child: category(height: height, category: "wisdom"),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -136,8 +132,7 @@ class _HomePageState extends State<HomePage> {
                         Global.tableName = "Life";
                         Navigator.of(context).pushNamed("detail_Page");
                       },
-                      child:
-                      category(height: height, category: "Life"),
+                      child: category(height: height, category: "Life"),
                     ),
                   ),
                 ],
@@ -151,8 +146,7 @@ class _HomePageState extends State<HomePage> {
                         Global.tableName = "Love";
                         Navigator.of(context).pushNamed("detail_Page");
                       },
-                      child: category(
-                          height: height, category: "Love"),
+                      child: category(height: height, category: "Love"),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -162,8 +156,7 @@ class _HomePageState extends State<HomePage> {
                         Global.tableName = "Patience";
                         Navigator.of(context).pushNamed("detail_Page");
                       },
-                      child: category(
-                          height: height, category: "Patience"),
+                      child: category(height: height, category: "Patience"),
                     ),
                   ),
                 ],
@@ -182,8 +175,7 @@ class _HomePageState extends State<HomePage> {
                   TextButton(
                     onPressed: () {
                       Global.isAuthorCategory = false;
-                      Navigator.of(context)
-                          .pushNamed("drawer_List_Page");
+                      Navigator.of(context).pushNamed("drawer_List_Page");
                     },
                     child: Text(
                       "View All >",
@@ -205,8 +197,7 @@ class _HomePageState extends State<HomePage> {
                         Global.tableName = "sports";
                         Navigator.of(context).pushNamed("detail_Page");
                       },
-                      child:
-                      category(height: height, category: "Sports"),
+                      child: category(height: height, category: "Sports"),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -216,8 +207,7 @@ class _HomePageState extends State<HomePage> {
                         Global.tableName = "wisdom";
                         Navigator.of(context).pushNamed("detail_Page");
                       },
-                      child:
-                      category(height: height, category: "Wisdom"),
+                      child: category(height: height, category: "Wisdom"),
                     ),
                   ),
                 ],
@@ -231,8 +221,7 @@ class _HomePageState extends State<HomePage> {
                         Global.tableName = "life";
                         Navigator.of(context).pushNamed("detail_Page");
                       },
-                      child:
-                      category(height: height, category: "Life"),
+                      child: category(height: height, category: "Life"),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -242,8 +231,7 @@ class _HomePageState extends State<HomePage> {
                         Global.tableName = "business";
                         Navigator.of(context).pushNamed("detail_Page");
                       },
-                      child: category(
-                          height: height, category: "Business"),
+                      child: category(height: height, category: "Business"),
                     ),
                   ),
                 ],
@@ -262,8 +250,7 @@ class _HomePageState extends State<HomePage> {
                   TextButton(
                     onPressed: () {
                       Global.isAuthorCategory = true;
-                      Navigator.of(context)
-                          .pushNamed("drawer_List_Page");
+                      Navigator.of(context).pushNamed("drawer_List_Page");
                     },
                     child: Text(
                       "View All >",
@@ -347,8 +334,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
-  drawerOpen(){
+  drawerOpen() {
     return Drawer(
       child: SingleChildScrollView(
         child: Column(
@@ -359,51 +345,52 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity,
               color: const Color(0xffa55c89),
               alignment: Alignment.center,
-              child:  Text(
+              child: Text(
                 "Life Quotes and\nSayings",
                 textAlign: TextAlign.center,
-                style: GoogleFonts.satisfy(
-                  color: Colors.white,
-                  fontSize: 40,
-                  fontWeight: FontWeight.w600
-                ),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w600),
               ),
             ),
-...Global.drawerDetails1.map((e) {return  ListTile(
-  onTap: () {
-    if (e.title == "By Topic") {
-      Global.isAuthorCategory = false;
-      Navigator.of(context)
-          .pushNamed("drawer_List_Page");
-    } else if (e.title == "By Author") {
-      Global.isAuthorCategory = true;
-      Navigator.of(context)
-          .pushNamed("drawer_List_Page");
-    }
-  },
-  leading: Icon(
-    e.icon,
-    color: e.color,
-    size: 30,
-  ),
-  title: Text(
-    e.title,
-    style: const TextStyle(
-      fontSize: 18,
-      color: Colors.black,fontWeight: FontWeight.w800,
-    ),
-  ),
-);} ),
+            ...Global.drawerDetails1.map((e) {
+              return ListTile(
+                onTap: () {
+                  if (e.title == "By Topic") {
+                    Global.isAuthorCategory = false;
+                    Navigator.of(context).pushNamed("drawer_List_Page");
+                  } else if (e.title == "By Author") {
+                    Global.isAuthorCategory = true;
+                    Navigator.of(context).pushNamed("drawer_List_Page");
+                  }
+                },
+                leading: Icon(
+                  e.icon,
+                  color: e.color,
+                  size: 30,
+                ),
+                title: Text(
+                  e.title,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              );
+            }),
             const Divider(),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-              child: Text(
-                "Communicate",
-                style: TextStyle(fontSize: 18,color: Colors.grey,fontWeight: FontWeight.w900)
-              ),
+              child: Text("Communicate",
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w900)),
             ),
             ...Global.drawerDetails2.map(
-                  (e) => ListTile(
+              (e) => ListTile(
                 onTap: () {},
                 leading: Icon(
                   e.icon,
@@ -414,7 +401,8 @@ class _HomePageState extends State<HomePage> {
                   e.title,
                   style: const TextStyle(
                     fontSize: 18,
-                    color: Colors.black,fontWeight: FontWeight.w800,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
               ),
@@ -485,7 +473,7 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.only(left: 5, top: 3),
           child: Text(
             "$category Quotes",
-            style :TextStyle(
+            style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w500,
             ),
@@ -494,6 +482,7 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+
   carouselSlider({required double height, required double width}) {
     int index = 0;
 
@@ -506,7 +495,9 @@ class _HomePageState extends State<HomePage> {
           return InkWell(
             onTap: () {
               Global.selectedQuote = res![index];
-              Navigator.of(context).pushNamed("details_page");
+              Navigator.of(context).pushNamed(
+                "detail_Page",
+              );
             },
             child: CarouselSlider(
               options: CarouselOptions(
@@ -515,7 +506,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 height: height * 0.26,
                 autoPlay: true,
-                viewportFraction: 0.8,
+                viewportFraction: 0.7,
                 enlargeCenterPage: true,
                 scrollDirection: Axis.horizontal,
               ),
@@ -568,8 +559,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  options(
-      {required var color, required var icon, required String text}) {
+  options({required var color, required var icon, required String text}) {
     return SizedBox(
       height: 90,
       child: Column(
