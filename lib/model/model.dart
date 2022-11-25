@@ -6,8 +6,13 @@ class DrawerDetails {
   final IconData icon;
   final String title;
   final Color color;
+  String? routes;
 
-  DrawerDetails({required this.icon, required this.title, required this.color});
+  DrawerDetails(
+      {required this.icon,
+      required this.title,
+      required this.color,
+      this.routes});
 }
 
 class Quotes {
