@@ -1,20 +1,17 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../global/global.dart';
-
 
 class DrawerListTopicAndAuthor extends StatefulWidget {
   const DrawerListTopicAndAuthor({Key? key}) : super(key: key);
 
   @override
-  State<DrawerListTopicAndAuthor> createState() => _DrawerListTopicAndAuthorState();
+  State<DrawerListTopicAndAuthor> createState() =>
+      _DrawerListTopicAndAuthorState();
 }
 
 class _DrawerListTopicAndAuthorState extends State<DrawerListTopicAndAuthor> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +27,7 @@ class _DrawerListTopicAndAuthorState extends State<DrawerListTopicAndAuthor> {
         elevation: 0,
         title: Text(
           "Quotes By ${(Global.isAuthorCategory) ? "Author" : "Category"}",
-          style: GoogleFonts.poppins(
+          style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w600,
           ),
@@ -71,7 +68,8 @@ class _DrawerListTopicAndAuthorState extends State<DrawerListTopicAndAuthor> {
                             fontSize: 26,
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
-                            letterSpacing: 1,                          ),
+                            letterSpacing: 1,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 20),
