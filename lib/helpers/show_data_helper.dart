@@ -10,19 +10,19 @@ class QuotesDataShow {
   static QuotesDataShow quotesDataShow = QuotesDataShow._();
 
   Future<List<Quotes>?> fetchQuotesData({required tableName}) async {
-    http.Response res = await http.get(
+    http.Response response = await http.get(
       Uri.parse((Global.isAuthor)
           ? "https://api.quotable.io/quotes/?author=$tableName"
           : "https://api.quotable.io/quotes/?tags=${(tableName == "Latest") ? "famous-quotes" : tableName}"),
     );
 
-    if (res.statusCode == 200) {
-      Map<String, dynamic> data = jsonDecode(res.body);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
 
-      List results = data["results"];
+      List result = data["results"];
       List<Uint8List> images = [];
 
-      for (int i = 0; i < results.length; i++) {
+      for (int i = 0; i < result.length; i++) {
         http.Response image = await http.get(Uri.parse(
             "https://source.unsplash.com/random/${i + 1}?background,${(tableName == "Latest" || Global.isAuthor) ? "nature" : tableName} ,dark"));
 
@@ -31,8 +31,8 @@ class QuotesDataShow {
         }
       }
 
-      List<Quotes> quotesData = results
-          .map((e) => Quotes.fromJSON(e, images[results.indexOf(e)]))
+      List<Quotes> quotesData = result
+          .map((e) => Quotes.fromJSON(e, images[result.indexOf(e)]))
           .toList();
 
       return quotesData;
