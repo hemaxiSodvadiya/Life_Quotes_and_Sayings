@@ -495,9 +495,8 @@ class _HomePageState extends State<HomePage> {
           return InkWell(
             onTap: () {
               Global.selectedQuote = res![index];
-              Navigator.of(context).pushNamed(
-                "detail_Page",
-              );
+              // Global.tableName = "Latest",
+              // Navigator.of(context).pushNamed("detail_Page");
             },
             child: CarouselSlider(
               options: CarouselOptions(
