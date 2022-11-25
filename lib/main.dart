@@ -1,3 +1,4 @@
+import 'package:demo_project/screens/change.dart';
 import 'package:demo_project/screens/details_page.dart';
 import 'package:demo_project/screens/details_page1.dart';
 import 'package:demo_project/screens/home_page.dart';
@@ -6,7 +7,7 @@ import 'package:demo_project/screens/drawer_List_Page.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
     MaterialApp(
@@ -22,6 +23,7 @@ void main() async {
         'drawer_List_Page': (context) => const DrawerListTopicAndAuthor(),
         'detail_Page': (context) => const DetailPage(),
         'detail_Page1': (context) => const DetailsPage(),
+        'change': (context) => const Quotes_Detail_Page(),
       },
     ),
   );
