@@ -102,21 +102,17 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        height: 60,
-        width: MediaQuery.of(context).size.width * 0.9,
+        height: 50,
+        width: MediaQuery.of(context).size.width * 0.8,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.white.withOpacity(0.8),
+          borderRadius: BorderRadius.circular(5),
+          color: Colors.white.withOpacity(0.7),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            FloatingActionButton(
-              heroTag: null,
-              mini: true,
-              elevation: 0,
-              backgroundColor: Colors.white,
-              child: const Icon(
+            IconButton(
+              icon: const Icon(
                 Icons.photo,
                 color: Color(0xff303030),
               ),
@@ -130,12 +126,8 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
                 });
               },
             ),
-            FloatingActionButton(
-              heroTag: null,
-              mini: true,
-              elevation: 0,
-              backgroundColor: Colors.white,
-              child: const Icon(
+            IconButton(
+              icon: const Icon(
                 Icons.color_lens_outlined,
                 color: Color(0xff303030),
               ),
@@ -145,12 +137,8 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
                 });
               },
             ),
-            FloatingActionButton(
-              heroTag: null,
-              mini: true,
-              elevation: 0,
-              backgroundColor: Colors.white,
-              child: const Icon(
+            IconButton(
+              icon: const Icon(
                 Icons.copy_rounded,
                 color: Color(0xff303030),
               ),
@@ -164,12 +152,8 @@ class _Quotes_Detail_PageState extends State<Quotes_Detail_Page> {
                     fontSize: 16.0);
               },
             ),
-            FloatingActionButton(
-              heroTag: null,
-              mini: true,
-              elevation: 0,
-              backgroundColor: Colors.white,
-              child: Icon(
+            IconButton(
+              icon: Icon(
                   args.favorite ? Icons.star : Icons.star_border_outlined,
                   color: const Color(0xff303030)),
               onPressed: () {
