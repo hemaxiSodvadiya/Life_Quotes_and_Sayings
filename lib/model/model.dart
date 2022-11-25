@@ -14,11 +14,20 @@ class Quotes {
   final String quot;
   final String author;
   final Uint8List image;
+  bool favorite;
 
-  Quotes({required this.quot, required this.author, required this.image});
+  Quotes(
+      {required this.quot,
+      required this.author,
+      required this.image,
+      required this.favorite});
 
   factory Quotes.fromJSON(Map data, Uint8List image) {
-    return Quotes(quot: data["content"], author: data["author"], image: image);
+    return Quotes(
+        quot: data["content"],
+        author: data["author"],
+        image: image,
+        favorite: false);
   }
 }
 
@@ -26,12 +35,20 @@ class QuotesDataBase {
   final String quotes;
   final String author;
   late Uint8List image;
+  bool favorite;
 
-  QuotesDataBase({required this.quotes, required this.author, required this.image});
+  QuotesDataBase(
+      {required this.quotes,
+      required this.author,
+      required this.image,
+      required this.favorite});
 
   factory QuotesDataBase.fromJSON(Map data) {
     return QuotesDataBase(
-        quotes: data["quote"], author: data["author"], image: data["image"]);
+        quotes: data["quote"],
+        author: data["author"],
+        image: data["image"],
+        favorite: false);
   }
 }
 
